@@ -6,14 +6,20 @@ using System.Net;
 using System.Text;
 using Common;
 using System.IO;
+using Common.Database;
+using System.Windows;
+using System.Diagnostics;
 
 namespace Client
 {
-    internal class Program
+    public class Program
     {
-        public static IPAddress IpAdress;
-        public static int Port;
+        public static IPAddress IPAddress = IPAddress.Parse("127.0.0.1");
+        public static int Port = 5000;
+        public static List<string> folders = new List<string>();
         public static int Id = -1;
+
+        [STAThread]
         static void Main(string[] args)
         {
             Console.WriteLine("Введите IP адрес сервера: ");
