@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using Common;
+using System.IO;
 
 namespace Client
 {
@@ -15,6 +16,21 @@ namespace Client
         public static int Id = -1;
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите IP адрес сервера: ");
+            string sIpAdress = Console.ReadLine();
+
+            Console.WriteLine("Введите порт: ");
+            string sPort = Console.ReadLine();
+
+            if (int.TryParse(sPort, out Port) && IPAddress.TryParse(sIpAdress, out IPAddress))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Данные успешно введены. Подключаюсь к серверу.");
+                while (true)
+                {
+                    ConnectServer();
+                }
+            }
         }
         public static bool CheckCommand(string message)
         {
