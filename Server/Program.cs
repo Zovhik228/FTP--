@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common
+namespace Server
 {
     internal class Program
     {
