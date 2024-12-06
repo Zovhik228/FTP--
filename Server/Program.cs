@@ -18,7 +18,18 @@ namespace Server
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Users.Add(new User("Seryy, Peshkov", "Asdfg123", @"E:\ftp_Netsvetaev\Server\Images\avatarka.jpg"));
+            Console.Write("Введите IP адрес сервера: ");
+            string sIpAdress = Console.ReadLine();
+            Console.WriteLine("Введите порт: ");
+            string sPort = Console.ReadLine();
+            if (int.TryParse(sPort, out Port) && IPAddress.TryParse(sIpAdress, out IpAdress)) 
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Данные успешно введены. Запуск сервера...");
+                StartServer();
+            }
+            Console.Read();
         }
 
         public static bool AutorizationUser(string login, string password)
@@ -49,7 +60,7 @@ namespace Server
             return FoldersFiles;
         }
 
-        public void StartServer()
+        public static void StartServer()
         {
             IPEndPoint endPoint = new IPEndPoint(IpAdress, Port);
             Socket sListener = new Socket(
